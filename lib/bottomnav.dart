@@ -23,7 +23,7 @@ class _NavBottomState extends State<NavBottom> {
 
     switch (curIndex) {
       case 0:
-        body = homePage();
+        body = Mainpage();
         break;
 
       case 1:
@@ -59,7 +59,7 @@ class _NavBottomState extends State<NavBottom> {
               icon: InkWell(
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(
-                      'https://uifaces.co/our-content/donated/3799Ffxy.jpeg'),
+                      'https://uifaces.co/our-content/donated/LpiGpOEC.jpg'),
                   radius: 15,
                 ),
               ),

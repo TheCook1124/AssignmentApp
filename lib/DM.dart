@@ -13,7 +13,7 @@ class dm extends StatelessWidget {
         elevation: 0,
         title: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Text(
-            "Cristine",
+            "Ben",
             style: TextStyle(color: Colors.black),
           ),
           Icon(Icons.keyboard_arrow_down),
@@ -63,14 +63,14 @@ class dm extends StatelessWidget {
                     subtitle: Row(
                       children: [
                         SizedBox(
-                            width: 114,
+                            width: 110,
                             child: Text(
                               'Hello! How was your trip to Spain?',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                             )),
-                        SizedBox(width: 65),
+                        SizedBox(width: 55),
                         Text('1d')
                       ],
                     ),

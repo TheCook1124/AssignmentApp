@@ -2,6 +2,7 @@ import 'package:appnew/Main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:appnew/Sign_up.dart';
 import 'package:appnew/home_page.dart';
+import 'package:appnew/bottomnav.dart';
 void main() => runApp(MaterialApp(
   home: login(),
 ));
@@ -65,7 +66,7 @@ class login extends StatelessWidget {
                 minWidth: 300,
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Mainpage()));
+                      MaterialPageRoute(builder: (context) => NavBottom()));
                 },
                 child: Text('Log in'),
                 color: Colors.lightBlue,

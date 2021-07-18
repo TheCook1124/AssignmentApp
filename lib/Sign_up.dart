@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appnew/log_in.dart';
 import 'package:appnew/home_page.dart';
+import 'package:appnew/bottomnav.dart';
 void main() => runApp(MaterialApp(
   home: signup(),
 ));
@@ -75,7 +76,10 @@ class signup extends StatelessWidget {
               FlatButton(
                 height: 50,
                 minWidth: 300,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NavBottom()));
+                },
                 child: Text('Sign Up'),
                 color: Colors.lightBlue,
               ),

@@ -26,9 +26,46 @@ List<Post> Posts = [
       'Ben',
       'https://uifaces.co/our-content/donated/LpiGpOEC.jpg'),
   Post(
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3JvdXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Ben',
+      'https://uifaces.co/our-content/donated/LpiGpOEC.jpg'),
+  Post(
       'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       'Mackenzie',
-      'https://randomuser.me/api/portraits/women/65.jpg')
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+  Post(
+      'https://images.unsplash.com/flagged/photo-1564419188205-4a8e1bc1adc3?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      'Mackenzie',
+      'https://randomuser.me/api/portraits/women/65.jpg'),
+
 ];
 List<Story> Stories = [
   Story('https://uifaces.co/our-content/donated/LpiGpOEC.jpg', 'Ben'),
@@ -147,7 +184,8 @@ class Mainpage extends StatelessWidget {
                       ),
                       CircleAvatar(
                           radius: 8.0,
-                          backgroundImage: NetworkImage(Posts[index].ProPic)),
+                          backgroundImage: NetworkImage('https://uifaces.co/our-content/donated/LpiGpOEC.jpg'),
+                      ),
                       Text('liked by 132 others'),
 
                     ],

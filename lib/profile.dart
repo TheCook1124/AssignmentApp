@@ -17,7 +17,7 @@ class profile extends StatelessWidget {
         title: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Icon(Icons.lock),
           Text(
-            "Cristine",
+            "Ben",
             style: TextStyle(color: Colors.black),
           ),
           Icon(Icons.keyboard_arrow_down),
@@ -34,7 +34,7 @@ class profile extends StatelessWidget {
                 Expanded(
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        'https://uifaces.co/our-content/donated/3799Ffxy.jpeg'),
+                        'https://uifaces.co/our-content/donated/LpiGpOEC.jpg'),
                     radius: 50,
                   ),
                 ),
@@ -42,7 +42,7 @@ class profile extends StatelessWidget {
                     child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('54', style: TextStyle(fontSize: 20)),
+                    Text('32', style: TextStyle(fontSize: 20)),
                     Text('Posts', style: TextStyle(fontSize: 15))
                   ],
                 )),
@@ -50,7 +50,7 @@ class profile extends StatelessWidget {
                     child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('834', style: TextStyle(fontSize: 20)),
+                    Text('104', style: TextStyle(fontSize: 20)),
                     Text('Followers', style: TextStyle(fontSize: 15))
                   ],
                 )),
@@ -58,7 +58,7 @@ class profile extends StatelessWidget {
                     child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('162', style: TextStyle(fontSize: 20)),
+                    Text('182', style: TextStyle(fontSize: 20)),
                     Text('Following', style: TextStyle(fontSize: 15))
                   ],
                 )),
@@ -71,15 +71,15 @@ class profile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Cristine Rose'),
+                Text('Ben White'),
                 Text.rich(TextSpan(
-                    text: 'Digital goodies designer ',
+                    text: 'Banker @ credit suisse ',
                     children: [
                       TextSpan(
                           text: '@pixsellz',
                           style: TextStyle(color: Colors.blue))
                     ])),
-                Text('Everything is designed.'),
+                Text('Money is everything'),
               ],
             ),
           ),
@@ -106,10 +106,10 @@ class profile extends StatelessWidget {
           Divider(height: 0),
           Expanded(
             child: GridView.builder(
-                itemCount: images.length,
+                itemCount: img.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Image.network(
-                    images[index].url2,
+                    img[index].url2,
                     fit: BoxFit.cover,
                   );
                 },
@@ -131,26 +131,26 @@ class image {
   image(this.url2);
 }
 
-List<image> images = [
+List<image> img = [
   image(
-      'https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg'),
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3JvdXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
   image(
-      'https://cdn.britannica.com/08/187508-050-D6FB5173/Shanghai-Tower-Gensler-San-Francisco-world-Oriental-2015.jpg'),
-  image('https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-1200-80.jpg'),
+      'https://images.unsplash.com/photo-1484589065579-248aad0d8b13?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3BhY2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+  image('https://images.unsplash.com/photo-1459257868276-5e65389e2722?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29mZWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
   image(
       'https://images.pexels.com/photos/111755/pexels-photo-111755.jpeg?cs=srgb&dl=pexels-pattama-choomsree-111755.jpg&fm=jpg'),
   image(
       'https://i.pinimg.com/originals/86/3e/ef/863eef974d1011a0d3c7a2698591bb3e.jpg'),
-  image('https://www.desicomments.com/dc3/21/445063/445063.png'),
+  image('https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'),
   image(
       'https://parade.com/wp-content/uploads/2019/10/Life-Quotes-Dolly-680x430.jpg'),
   image(
-      'https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg'),
+      'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGZyaWVuZHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
   image(
-      'https://s3.scoopwhoop.com/anj2/5fbb819960c0603f5625e604/222f1044-32a8-4e69-ae15-d1070d954086.jpg'),
+      'https://images.unsplash.com/photo-1488085061387-422e29b40080?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dHJhdmVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
   image('https://miro.medium.com/max/1200/0*s7vGN34hz5jJUYTm.png'),
   image(
-      'https://jw-webmagazine.com/wp-content/uploads/2020/03/Kimetsu-no-YaibaDemon-Slayer.jpg'),
+      'https://images.unsplash.com/photo-1518605125802-006dcc629439?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlbHNlYSUyMGZjfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
   image(
-      'https://www.denofgeek.com/wp-content/uploads/2019/02/mcu-1-iron-man.jpg?fit=1200%2C675')
+      'https://images.unsplash.com/photo-1623521602452-1a7cd695feca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fGNyaWNrZXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')
 ];
