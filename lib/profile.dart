@@ -76,7 +76,7 @@ class profile extends StatelessWidget {
                     text: 'Banker @ credit suisse ',
                     children: [
                       TextSpan(
-                          text: '@pixsellz',
+                          text: '@chelseafc',
                           style: TextStyle(color: Colors.blue))
                     ])),
                 Text('Money is everything'),
