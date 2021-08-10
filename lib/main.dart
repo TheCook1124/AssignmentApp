@@ -1,17 +1,33 @@
 import 'package:flutter/cupertino.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-
-
-import 'package:flutter/material.dart';
-import 'package:appnew/log_in.dart';
-import 'package:appnew/Sign_up.dart';
 import 'package:appnew/home_page.dart';
-void main() => runApp(MaterialApp(
-  home: homePage(),
-));
-
-
+import 'package:firebase_core/firebase_core.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp( //use MaterialApp() widget like this
+        home: homePage() //create new widget class for this 'home' to
+      // escape 'No MediaQuery widget found' error
+    );
+  }
+}
+class Home extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+          //MediaQuery methods in use
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 0.4,
+        )
+    );
+  }
+}
 /*
 void main() {
   runApp(MyApp());

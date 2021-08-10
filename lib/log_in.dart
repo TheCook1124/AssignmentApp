@@ -3,11 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:appnew/Sign_up.dart';
 import 'package:appnew/home_page.dart';
 import 'package:appnew/bottomnav.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 void main() => runApp(MaterialApp(
   home: login(),
 ));
-class login extends StatelessWidget {
+
+class login extends StatefulWidget {
   @override
+  loginState createState() => loginState();
+}
+class loginState extends  State<login>{
+  @override
+final TextEditingController _pword = TextEditingController();
+final TextEditingController _email = TextEditingController();
+final GlobalKey<FormState> fkey = GlobalKey<FormState>();
+final auth = FirebaseAuth.instance;
+
+final add = FirebaseFirestore.instance;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -26,51 +41,49 @@ class login extends StatelessWidget {
                 height: 50,
               ),
               SizedBox(height: 60),
-              Container(
-                height: 80,
-                width: 300,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Username',
-                  ),
-                ),
-              ),
-              Container(
-                height: 80,
-                width: 300,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+              Form(
+                key: fkey,
+                child: Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      TextFormField(
+                        controller: _email,
+                        decoration: InputDecoration(hintText: 'email-id'),
+                        validator: (value) {
+                          if (value!.isEmpty) return "Please fill this field";
+                        },
+                      ),
+                      TextFormField(
+                        controller: _pword,
+                        decoration: InputDecoration(hintText: 'Password'),
+                        validator: (value) {
+                          if (value!.isEmpty)
+                            return "Please fill this field";
+                          else if (value.length < 8)
+                            return "Password is too short";
+                        },
+                      ),
+                      FlatButton(
+                        height: 30,
+                        minWidth: 300,
+                        onPressed: () async {
+                          if (fkey.currentState!.validate()) {
+                            await Register();
+                            await Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => NavBottom()));
+                          };
+
+                        },
+                        child: Text('log in'),
+                        color: Colors.lightBlue,
+                      ),
+                    ],
                   ),
                 ),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('                                                     Forgot Password?',style:TextStyle(color: Colors.lightBlue),),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.0,
-                  vertical: 2.0,
-                ),
-                margin: EdgeInsets.all(10.0),
-
-              ),
-              FlatButton(
-                height: 50,
-                minWidth: 300,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => NavBottom()));
-                },
-                child: Text('Log in'),
-                color: Colors.lightBlue,
-              ),
               SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -87,15 +100,14 @@ class login extends StatelessWidget {
                         'Dont have an account?'
                     ),
                   ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => signup()));
-                      },
-                      child: Text('Sign Up',
-                        style: TextStyle(color: Colors.lightBlue),
-                      ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => signup()));
+                    },
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.lightBlue),
                     ),
                   ),
                 ],
@@ -107,5 +119,27 @@ class login extends StatelessWidget {
       ),
 
     );
+  }
+
+  bool? success;
+  String? u_email;
+
+  Future<void> Register() async {
+    final User? user = (await auth.signInWithEmailAndPassword(
+        email: _email.text, password: _pword.text))
+        .user;
+    if (user != null) {
+      setState(() {
+        success = true;
+        u_email = user.email;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _pword.dispose();
+    super.dispose();
   }
 }

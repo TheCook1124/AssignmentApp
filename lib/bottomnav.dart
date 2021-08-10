@@ -7,6 +7,8 @@ import 'package:appnew/Main_page.dart';
 import 'package:appnew/search.dart';
 import 'package:appnew/profile.dart';
 
+import 'addPhoto.dart';
+
 class NavBottom extends StatefulWidget {
   const NavBottom({Key? key}) : super(key: key);
 
@@ -23,11 +25,15 @@ class _NavBottomState extends State<NavBottom> {
 
     switch (curIndex) {
       case 0:
-        body = Mainpage();
+        body = MainPage();
         break;
 
       case 1:
         body = Search();
+        break;
+
+      case 2:
+        body = posts();
         break;
 
       case 4:

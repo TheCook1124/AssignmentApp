@@ -1,38 +1,71 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:appnew/main.dart';
-import 'package:appnew/bottomnav.dart';
+import 'package:appnew/DispPostSearch.dart';
+import 'package:appnew/SearchProf.dart';
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
+  @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  final firestoreInstance = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
+  final TextEditingController _username = TextEditingController();
+
+  Future<void> getDocument() async {
+    var documentSnapshot = await firestoreInstance
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .get();
+    setState(() {
+      _username.text = documentSnapshot.get('username');
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDocument();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //final firestoreInstance = FirebaseFirestore.instance;
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          title: SizedBox(
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            title: SizedBox(
               height: 50,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search',
-                    hintStyle: TextStyle(fontSize: 15),
-                    contentPadding: EdgeInsets.only(
-                        left: 15, bottom: 11, top: 11, right: 15),
-                    prefixIcon: Icon(Icons.search),
-                    filled: true,
-                    fillColor: Color(0xFFCBCBCB),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.all(const Radius.circular(10.0)),
-                      borderSide: new BorderSide(color: Color(0xFFCBCBCB)),
-                    ),
-                  ),
-                ),
-              )),
-        ),
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => searchProfile()),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.search),
+                          Text('Search', style: TextStyle(color: Colors.black)),
+                        ],
+                      ),
+                      color: Colors.black12,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(10)))),
+            )),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -85,7 +118,6 @@ class Search extends StatelessWidget {
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(5))),
                       SizedBox(width: 5),
-
                       FlatButton(
                           height: 50,
                           onPressed: () {},
@@ -127,7 +159,7 @@ class Search extends StatelessWidget {
                                   width: 1,
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(5))),
-                      SizedBox(width:5),
+                      SizedBox(width: 5),
                       FlatButton(
                           height: 50,
                           onPressed: () {},
@@ -152,46 +184,34 @@ class Search extends StatelessWidget {
                   ),
                 ], scrollDirection: Axis.horizontal)),
             Divider(height: 0),
+
             //IMAGES
             Expanded(
-              child: GridView.builder(
-                  itemCount: images.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Image.network(images[index].url2, fit: BoxFit.cover,);
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 1,
-                    mainAxisSpacing: 1,
-                  )),
-            )
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: firestoreInstance
+                        .collection('post')
+                        .where('username', isNotEqualTo: _username.text)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        return new GridView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              DocumentSnapshot ds = snapshot.data!.docs[index];
+                              return displayPostSearch(documentsnapshot: ds);
+                            },
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 1,
+                              mainAxisSpacing: 1,
+                            ));
+                      } else {
+                        return LinearProgressIndicator();
+                      }
+                    }))
           ],
         ));
   }
 }
-
-class image {
-  final String url2;
-
-  image(this.url2);
-}
-
-List<image> images = [
-  image(
-      'https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg'),
-  image(
-      'https://cdn.britannica.com/08/187508-050-D6FB5173/Shanghai-Tower-Gensler-San-Francisco-world-Oriental-2015.jpg'),
-  image('https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-1200-80.jpg'),
-  image(
-      'https://images.pexels.com/photos/111755/pexels-photo-111755.jpeg?cs=srgb&dl=pexels-pattama-choomsree-111755.jpg&fm=jpg'),
-  image(
-      'https://i.pinimg.com/originals/86/3e/ef/863eef974d1011a0d3c7a2698591bb3e.jpg'),
-  image('https://www.desicomments.com/dc3/21/445063/445063.png'),
-  image(
-      'https://parade.com/wp-content/uploads/2019/10/Life-Quotes-Dolly-680x430.jpg'),
-  image(
-      'https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg'),
-  image(
-      'https://s3.scoopwhoop.com/anj2/5fbb819960c0603f5625e604/222f1044-32a8-4e69-ae15-d1070d954086.jpg'),
-  image('https://miro.medium.com/max/1200/0*s7vGN34hz5jJUYTm.png')
-];
